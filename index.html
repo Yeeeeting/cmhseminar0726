@@ -40,18 +40,6 @@
             color: #4b5563; /* A distinct, professional gray for moderators */
             font-weight: 500;
         }
-        /* --- Header 浮水印：奇美建築 --- */
-.header-watermark {
-    background-image: url('chi-mei-building.png'); /* ← 因為檔案在根目錄 */
-    background-repeat: no-repeat;
-    background-position: center bottom;  /* 想靠右就改 right bottom */
-    background-size: 320px auto;         /* 依需求改 280~380px */
-    opacity: 0.07;                       /* 0.05~0.10 越小越淡 */
-    position: absolute;
-    inset: 0;                            /* top/right/bottom/left = 0 */
-    pointer-events: none;                /* 不遮滑鼠事件 */
-    z-index: 0;                          /* 文字層在上面 */
-}
     </style>
 </head>
 <body class="gradient-bg p-4 md:p-8">
@@ -102,6 +90,7 @@
                             </div>
                             <div class="border-l-2 border-blue-200 pl-4 pt-1 w-full">
                                 <h3 class="font-semibold text-xl text-gray-800">來賓報到</h3>
+                                <p class="text-gray-600 text-base">所有與會者</p>
                             </div>
                         </div>
                         
@@ -146,12 +135,12 @@
                             </div>
                             <div class="border-l-2 border-blue-200 pl-4 pt-1 w-full">
                                 <h3 class="font-semibold text-2xl text-gray-800 mb-4">醫事職類推動CBME實務經驗分享</h3>
-                                <div class="space-y-4 text-base">
-                                     <div class="border-t border-gray-200 pt-3 space-y-2">
+                                <div class="border-t border-gray-200 pt-3 space-y-4 text-base">
+                                     <div class="space-y-2">
                                         <div><span class="speaker-name font-bold">講者：</span><span class="speaker-name">辛幼玫 督導 (高雄醫學大學附設中和紀念醫院 護理部)</span></div>
                                         <div><span class="moderator-name font-bold">座長：</span><span class="moderator-name">江惠英 副部長 (奇美醫療財團法人奇美醫院 護理部)</span></div>
                                      </div>
-                                     <div class="border-t border-gray-200 pt-3 space-y-2">
+                                     <div class="space-y-2">
                                         <div><span class="speaker-name font-bold">講者：</span><span class="speaker-name">許郁笙 藥師/教學長 (高雄醫學大學附設中和紀念醫院 藥學部)</span></div>
                                         <div><span class="moderator-name font-bold">座長：</span><span class="moderator-name">蘇慧真 部長 (奇美醫療財團法人奇美醫院 藥劑部)</span></div>
                                      </div>
@@ -173,7 +162,7 @@
                 </section>
 
                 <!-- Registration Section -->
-                <section class="bg-blue-50 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <section class="bg-blue-50 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-center gap-12">
                     <div class="md:w-2/3">
                         <h2 class="text-3xl font-bold brand-blue mb-2">立即報名</h2>
                         <p class="text-gray-700 mb-2 text-lg">名額上限200人。</p>
