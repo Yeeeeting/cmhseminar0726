@@ -40,6 +40,18 @@
             color: #4b5563; /* A distinct, professional gray for moderators */
             font-weight: 500;
         }
+        /* --- Header 浮水印：奇美建築 --- */
+.header-watermark {
+    background-image: url('chi-mei-building.png'); /* ← 因為檔案在根目錄 */
+    background-repeat: no-repeat;
+    background-position: center bottom;  /* 想靠右就改 right bottom */
+    background-size: 320px auto;         /* 依需求改 280~380px */
+    opacity: 0.07;                       /* 0.05~0.10 越小越淡 */
+    position: absolute;
+    inset: 0;                            /* top/right/bottom/left = 0 */
+    pointer-events: none;                /* 不遮滑鼠事件 */
+    z-index: 0;                          /* 文字層在上面 */
+}
     </style>
 </head>
 <body class="gradient-bg p-4 md:p-8">
