@@ -40,6 +40,38 @@
             color: #4b5563; /* A distinct, professional gray for moderators */
             font-weight: 500;
         }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            max-width: 95%;
+            width: 640px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="gradient-bg p-4 md:p-8">
@@ -63,11 +95,12 @@
                             <p class="text-gray-900 text-lg font-medium mt-2">114年7月26日 (六)<br>09:00 - 12:00</p>
                         </div>
                     </div>
-                    <div class="bg-slate-100 p-6 rounded-xl flex flex-col items-center text-center h-full">
+                    <div id="location-card" class="bg-slate-100 p-6 rounded-xl flex flex-col items-center text-center h-full cursor-pointer hover:bg-slate-200 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin brand-blue mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         <div>
                             <h3 class="font-semibold text-gray-800 text-xl">地點</h3>
                             <p class="text-gray-900 text-lg font-medium mt-2">奇美醫院第五醫療大樓<br>五樓國際會議廳</p>
+                            <span class="text-sm text-blue-300 mt-2 block">點擊開啟地圖導航</span>
                         </div>
                     </div>
                     <div class="bg-slate-100 p-6 rounded-xl flex flex-col items-center text-center h-full">
@@ -204,6 +237,41 @@
             </footer>
         </div>
     </div>
+    
+    <!-- Map Modal -->
+    <div id="map-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                 <h2 class="text-2xl font-bold brand-blue">活動地點</h2>
+                 <button id="close-map-modal" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            </div>
+            <div class="w-full h-[450px] md:h-[500px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0791476434756!2d120.21951777592456!3d23.020865979175095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e76de8907c3b7%3A0x98a5ce369e2c1040!2z5aWH576O6Yar55mC6LKh5ZyY5rOV5Lq65aWH576O6Yar6Zmi!5e0!3m2!1szh-TW!2stw!4v1751507687433!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const locationCard = document.getElementById('location-card');
+            const mapModal = document.getElementById('map-modal');
+            const closeModalBtn = document.getElementById('close-map-modal');
+
+            locationCard.addEventListener('click', () => {
+                mapModal.classList.add('active');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                mapModal.classList.remove('active');
+            });
+
+            mapModal.addEventListener('click', (e) => {
+                if (e.target === mapModal) {
+                    mapModal.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
