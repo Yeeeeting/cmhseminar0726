@@ -101,11 +101,12 @@
             <main class="p-4 md:p-8">
                 <!-- Event Details Section -->
                 <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-slate-100 p-6 rounded-xl relative overflow-hidden flex flex-col items-center text-center">
+                    <div id="calendar-card" class="bg-slate-100 p-6 rounded-xl relative overflow-hidden flex flex-col items-center text-center cursor-pointer hover:bg-slate-200 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="absolute text-blue-200 opacity-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
                         <div class="relative z-10">
                             <h3 class="font-bold text-gray-800 text-2xl">日期與時間</h3>
                             <p class="text-gray-900 text-xl font-semibold mt-2">114年7月26日 (六)<br>09:00 - 12:00</p>
+                             <span class="text-xs text-blue-400 mt-2 block">點擊加入行事曆</span>
                         </div>
                     </div>
                     <div id="location-card" class="bg-slate-100 p-6 rounded-xl relative overflow-hidden flex flex-col items-center text-center cursor-pointer hover:bg-slate-200 transition-colors">
@@ -290,6 +291,23 @@
                     }
                 });
             }
+
+            // Google Calendar Logic
+            const calendarCard = document.getElementById('calendar-card');
+            if(calendarCard) {
+                calendarCard.addEventListener('click', () => {
+                    const title = encodeURIComponent('奇美醫院CBME臨床教學實踐與展望研討會');
+                    // Set start time to 08:50 for check-in
+                    const dates = '20250726T085000/20250726T120000'; 
+                    const location = encodeURIComponent('奇美醫院第五醫療大樓五樓國際會議廳');
+                    const details = encodeURIComponent('本研討會聚焦能力導向醫學教育(CBME)的最新國際趨勢與未來發展，深入探討資訊科技如何融入臨床教學，並邀請院外醫事教學團隊分享推動 CBME 的實務經驗，期望加速數位轉型、帶動教學創新，透過Q&A與座談交流進一步凝聚跨職類教師對CBME落實的前瞻視野與共識。');
+                    
+                    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+                    
+                    window.open(googleCalendarUrl, '_blank');
+                });
+            }
+
 
             // Tooltip Logic
             const tooltip = document.getElementById('tooltip');
